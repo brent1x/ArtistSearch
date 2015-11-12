@@ -15,6 +15,9 @@
 		8478DDD61BF3AC3A00D9E812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8478DDD41BF3AC3A00D9E812 /* LaunchScreen.storyboard */; };
 		8478DDE11BF3AC3A00D9E812 /* ArtistSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DDE01BF3AC3A00D9E812 /* ArtistSearchTests.m */; };
 		8478DDEC1BF3AC3A00D9E812 /* ArtistSearchUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DDEB1BF3AC3A00D9E812 /* ArtistSearchUITests.m */; };
+		8478DE011BF3E79000D9E812 /* ArtistResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DE001BF3E79000D9E812 /* ArtistResult.m */; };
+		8478DE051BF403A200D9E812 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8478DE041BF403A200D9E812 /* Default-568h@2x.png */; };
+		8478DE081BF42CF800D9E812 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DE071BF42CF800D9E812 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,11 @@
 		8478DDE71BF3AC3A00D9E812 /* ArtistSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtistSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8478DDEB1BF3AC3A00D9E812 /* ArtistSearchUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchUITests.m; sourceTree = "<group>"; };
 		8478DDED1BF3AC3A00D9E812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8478DDFF1BF3E79000D9E812 /* ArtistResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArtistResult.h; path = ../ArtistResult.h; sourceTree = "<group>"; };
+		8478DE001BF3E79000D9E812 /* ArtistResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArtistResult.m; path = ../ArtistResult.m; sourceTree = "<group>"; };
+		8478DE041BF403A200D9E812 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8478DE061BF42CF800D9E812 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		8478DE071BF42CF800D9E812 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 		8478DDBA1BF3AC3A00D9E812 = {
 			isa = PBXGroup;
 			children = (
+				8478DE041BF403A200D9E812 /* Default-568h@2x.png */,
 				8478DDC51BF3AC3A00D9E812 /* ArtistSearch */,
 				8478DDDF1BF3AC3A00D9E812 /* ArtistSearchTests */,
 				8478DDEA1BF3AC3A00D9E812 /* ArtistSearchUITests */,
@@ -103,9 +112,13 @@
 			children = (
 				8478DDC91BF3AC3A00D9E812 /* AppDelegate.h */,
 				8478DDCA1BF3AC3A00D9E812 /* AppDelegate.m */,
+				8478DDFF1BF3E79000D9E812 /* ArtistResult.h */,
+				8478DE001BF3E79000D9E812 /* ArtistResult.m */,
 				8478DDCC1BF3AC3A00D9E812 /* ViewController.h */,
 				8478DDCD1BF3AC3A00D9E812 /* ViewController.m */,
 				8478DDCF1BF3AC3A00D9E812 /* Main.storyboard */,
+				8478DE061BF42CF800D9E812 /* DetailViewController.h */,
+				8478DE071BF42CF800D9E812 /* DetailViewController.m */,
 				8478DDD21BF3AC3A00D9E812 /* Assets.xcassets */,
 				8478DDD41BF3AC3A00D9E812 /* LaunchScreen.storyboard */,
 				8478DDD71BF3AC3A00D9E812 /* Info.plist */,
@@ -244,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8478DDD61BF3AC3A00D9E812 /* LaunchScreen.storyboard in Resources */,
+				8478DE051BF403A200D9E812 /* Default-568h@2x.png in Resources */,
 				8478DDD31BF3AC3A00D9E812 /* Assets.xcassets in Resources */,
 				8478DDD11BF3AC3A00D9E812 /* Main.storyboard in Resources */,
 			);
@@ -270,9 +284,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8478DE081BF42CF800D9E812 /* DetailViewController.m in Sources */,
 				8478DDCE1BF3AC3A00D9E812 /* ViewController.m in Sources */,
 				8478DDCB1BF3AC3A00D9E812 /* AppDelegate.m in Sources */,
 				8478DDC81BF3AC3A00D9E812 /* main.m in Sources */,
+				8478DE011BF3E79000D9E812 /* ArtistResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
