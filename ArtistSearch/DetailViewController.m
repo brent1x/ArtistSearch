@@ -10,28 +10,31 @@
 
 @interface DetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *songTitle;
+@property (weak, nonatomic) IBOutlet UILabel *songPrice;
+@property (weak, nonatomic) IBOutlet UILabel *collectionTitle;
+@property (weak, nonatomic) IBOutlet UILabel *collectionPrice;
+@property (weak, nonatomic) IBOutlet UIImageView *albumArt;
+
 @end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    self.navigationItem.title = self.result.artistName;
 
-/*
-#pragma mark - Navigation
+    self.songTitle.text = self.result.trackName;
+    self.songPrice.text = [self.result.trackPrice stringValue];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.collectionTitle.text = self.result.collectionName;
+    self.collectionPrice.text = [self.result.collectionPrice stringValue];
+
+    NSURL *aURL = [NSURL URLWithString:self.result.artworkUrl100];
+
+    self.albumArt.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:aURL]];
+
 }
-*/
 
 @end

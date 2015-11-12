@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ArtistResult.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,7 +32,7 @@
     self.individualResults = [NSArray new];
     self.arrayOfResults = [NSMutableArray new];
 
-    NSString *appleURL = @"https://itunes.apple.com/search?term=mariah+carey&limit=20";
+    NSString *appleURL = @"https://itunes.apple.com/search?term=bb+king&limit=20";
 
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:appleURL]
@@ -54,8 +55,9 @@
 
                     ArtistResult *result = [[ArtistResult alloc] initWithName:artistName track:trackName collection:collectionName preview:previewUrl artwork:artworkUrl100 collection:collectionViewUrl cPrice:collectionPrice tPrice:trackPrice];
                     [self.arrayOfResults addObject:result];
-                    [self.tableView reloadData];
                 }
+
+                [self.tableView reloadData];
             }] resume];
 }
 
@@ -69,6 +71,13 @@
     cell.textLabel.text = [individualResult objectForKey:@"trackName"];
     cell.detailTextLabel.text = [individualResult objectForKey:@"collectionName"];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    ArtistResult *result = [self.arrayOfResults objectAtIndex:indexPath.row];
+    DetailViewController *destVC = segue.destinationViewController;
+    destVC.result = result;
 }
 
 @end
