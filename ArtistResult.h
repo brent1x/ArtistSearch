@@ -16,10 +16,11 @@
 @property NSString *collectionName;
 @property NSString *previewUrl;
 @property NSString *artworkUrl100;
+@property NSString *trackViewUrl;
 @property NSString *collectionViewUrl;
 @property NSNumber *collectionPrice;
 @property NSNumber *trackPrice;
 
-- (instancetype)initWithName:(NSString *)artistName track:(NSString *)trackName collection:(NSString *)collectionName preview:(NSString *)previewUrl artwork:(NSString *)artworkUrl100 collection:(NSString *)collectionViewUrl cPrice:(NSNumber *)collectionPrice tPrice:(NSNumber *)trackPrice;
+- (instancetype)initWithName:(NSString *)artistName track:(NSString *)trackName collection:(NSString *)collectionName preview:(NSString *)previewUrl artwork:(NSString *)artworkUrl100 trackView:(NSString *)trackViewUrl collection:(NSString *)collectionViewUrl cPrice:(NSNumber *)collectionPrice tPrice:(NSNumber *)trackPrice;
 
 @end

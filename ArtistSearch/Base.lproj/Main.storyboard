@@ -128,6 +128,14 @@
                                 <rect key="frame" x="85" y="319" width="100" height="100"/>
                                 <animations/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5k3-q2-oE6">
+                                <rect key="frame" x="85" y="464" width="61" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Buy Now"/>
+                                <connections>
+                                    <action selector="onBuyTrackPressed:" destination="fxP-hs-FyQ" eventType="touchUpInside" id="fMm-3c-oUn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,6 +143,7 @@
                     <navigationItem key="navigationItem" id="khO-nN-aLI"/>
                     <connections>
                         <outlet property="albumArt" destination="v9w-VZ-cew" id="hoy-sL-ImL"/>
+                        <outlet property="buySongButton" destination="5k3-q2-oE6" id="sGp-LY-r6t"/>
                         <outlet property="collectionPrice" destination="mKo-N6-GvW" id="Opb-mj-sKw"/>
                         <outlet property="collectionTitle" destination="sMK-SH-u0A" id="kUq-6h-s07"/>
                         <outlet property="songPrice" destination="iGm-Pj-7lU" id="XcS-W9-vN0"/>

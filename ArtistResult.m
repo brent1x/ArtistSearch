@@ -10,7 +10,7 @@
 
 @implementation ArtistResult
 
-- (instancetype)initWithName:(NSString *)artistName track:(NSString *)trackName collection:(NSString *)collectionName preview:(NSString *)previewUrl artwork:(NSString *)artworkUrl100 collection:(NSString *)collectionViewUrl cPrice:(NSNumber *)collectionPrice tPrice:(NSNumber *)trackPrice {
+- (instancetype)initWithName:(NSString *)artistName track:(NSString *)trackName collection:(NSString *)collectionName preview:(NSString *)previewUrl artwork:(NSString *)artworkUrl100 trackView:(NSString *)trackViewUrl collection:(NSString *)collectionViewUrl cPrice:(NSNumber *)collectionPrice tPrice:(NSNumber *)trackPrice {
 
     self = [super init];
     self.artistName = artistName;
@@ -18,6 +18,7 @@
     self.collectionName = collectionName;
     self.previewUrl = previewUrl;
     self.artworkUrl100 = artworkUrl100;
+    self.trackViewUrl = trackViewUrl;
     self.collectionViewUrl = collectionViewUrl;
     self.collectionPrice = collectionPrice;
     self.trackPrice = trackPrice;

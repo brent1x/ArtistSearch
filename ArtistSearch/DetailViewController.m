@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *collectionTitle;
 @property (weak, nonatomic) IBOutlet UILabel *collectionPrice;
 @property (weak, nonatomic) IBOutlet UIImageView *albumArt;
+@property (weak, nonatomic) IBOutlet UIButton *buySongButton;
 
 @end
 
@@ -25,16 +26,20 @@
 
     self.navigationItem.title = self.result.artistName;
 
-    self.songTitle.text = self.result.trackName;
-    self.songPrice.text = [self.result.trackPrice stringValue];
+    self.songTitle.text = [NSString stringWithFormat:@"Track: %@", self.result.trackName];
+    self.songPrice.text = [NSString stringWithFormat:@"$%@", [self.result.trackPrice stringValue]];
 
-    self.collectionTitle.text = self.result.collectionName;
-    self.collectionPrice.text = [self.result.collectionPrice stringValue];
+    self.collectionTitle.text = [NSString stringWithFormat:@"Album: %@", self.result.collectionName];
+    self.collectionPrice.text = [NSString stringWithFormat:@"$%@", [self.result.collectionPrice stringValue]];
 
-    NSURL *aURL = [NSURL URLWithString:self.result.artworkUrl100];
+    NSURL *artworkUrl = [NSURL URLWithString:self.result.artworkUrl100];
+    self.albumArt.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:artworkUrl]];
 
-    self.albumArt.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:aURL]];
+}
 
+- (IBAction)onBuyTrackPressed:(id)sender {
+    NSLog(@"%@", self.result.trackViewUrl);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.result.trackViewUrl]];
 }
 
 @end
