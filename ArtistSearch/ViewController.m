@@ -10,12 +10,14 @@
 #import "ArtistResult.h"
 #import "DetailViewController.h"
 
+#define kNSUserDefaultsCacheKey @"kNSUserDefaultsLastCacheKey"
+
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property NSDictionary *returnedDictionary;
 @property NSArray *individualResults;
 @property NSMutableArray *arrayOfResults;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -25,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self networkCall];
+    [self.tableView reloadData];
 }
 
 - (void)networkCall {
@@ -42,8 +45,17 @@
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
                                 NSError *error) {
+
+                if (error) {
+                    [self loadCachedData];
+                    [self.tableView reloadData];
+                }
+
                 self.returnedDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 self.individualResults = [self.returnedDictionary objectForKey:@"results"];
+
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:self.individualResults forKey:kNSUserDefaultsCacheKey];
 
                 for (NSDictionary *dict in self.individualResults) {
                     NSString *artistName = [dict objectForKey:@"artistName"];
@@ -58,27 +70,38 @@
 
                     ArtistResult *result = [[ArtistResult alloc] initWithName:artistName track:trackName collection:collectionName preview:previewUrl artwork:artworkUrl100 trackView:trackViewUrl collection:collectionViewUrl cPrice:collectionPrice tPrice:trackPrice];
                     [self.arrayOfResults addObject:result];
-                    [self.tableView reloadData];
                 }
+
+                [self.tableView reloadData];
+
         }] resume];
 
     [self.tableView reloadData];
 }
 
+#pragma mark // load cached data
+
+- (void)loadCachedData {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:kNSUserDefaultsCacheKey] != nil) {
+        self.individualResults = [userDefaults objectForKey:kNSUserDefaultsCacheKey];
+    }
+}
+
+#pragma mark // table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.arrayOfResults.count;
+    return self.individualResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID" forIndexPath:indexPath];
 
     NSDictionary *individualResult = [self.individualResults objectAtIndex:indexPath.row];
+
     cell.textLabel.text = [individualResult objectForKey:@"trackName"];
     cell.detailTextLabel.text = [individualResult objectForKey:@"collectionName"];
-
     NSURL *artworkUrl = [NSURL URLWithString:[individualResult objectForKey:@"artworkUrl100"]];
-    NSLog(@"%@", self.arrayOfResults);
     cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:artworkUrl]];
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -86,10 +109,7 @@
     return cell;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    NSIndexSet * sections = [NSIndexSet indexSetWithIndex:0];
-    [self.tableView reloadSections:sections withRowAnimation:UITableViewRowAnimationNone];
-}
+#pragma mark // prepare for segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -97,7 +117,5 @@
     DetailViewController *destVC = segue.destinationViewController;
     destVC.result = result;
 }
-
-
 
 @end
