@@ -12,7 +12,6 @@
 
 #define kNSUserDefaultsCacheKey @"kNSUserDefaultsLastCacheKey"
 
-
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property NSDictionary *returnedDictionary;
@@ -101,6 +100,7 @@
 
     cell.textLabel.text = [individualResult objectForKey:@"trackName"];
     cell.detailTextLabel.text = [individualResult objectForKey:@"collectionName"];
+
     NSURL *artworkUrl = [NSURL URLWithString:[individualResult objectForKey:@"artworkUrl100"]];
     cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:artworkUrl]];
 
